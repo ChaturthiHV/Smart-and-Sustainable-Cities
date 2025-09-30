@@ -27,7 +27,6 @@ Key domains include:
 
 **Future Scope:** GTFS real-time feeds, ML-driven ETAs, adaptive traffic signals, and dynamic dispatch systems.  
 
----
 
 ### 2. Citizen Safety Alert System  
 - Real-time geofenced alerts (accidents, floods, pollution).  
@@ -37,7 +36,7 @@ Key domains include:
 
 **Future Scope:** Integration with emergency services, predictive alerts, SLA dashboards for municipalities.  
 
----
+
 
 ### 3. Carbon Footprint Scoreboard  
 - Personal & neighborhood CO₂ impact tracker.  
@@ -47,7 +46,6 @@ Key domains include:
 
 **Future Scope:** Smart meter integration, ML-based eco suggestions, and city-wide climate dashboards.  
 
----
 
 ### 4. Pollution Hotspot Tracker  
 - Hyperlocal air-quality heatmap (PM₂.₅, NO₂).  
@@ -57,7 +55,7 @@ Key domains include:
 
 **Future Scope:** AI-driven pollution forecasting, crowd-sourced sensing, and city enforcement integrations.  
 
----
+
 
 ## 🛠️ Tech Stack
 - **Frontend:** HTML, CSS, JavaScript, React.js  

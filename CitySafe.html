@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CitySafe Pro - Advanced Citizen Safety & Alert System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%);
+            --dark-gradient: linear-gradient(135deg, #2d1b69 0%, #11998e 50%, #38ef7d 100%);
+            --violet-gradient: linear-gradient(135deg, #8360c3 0%, #2ebf91 100%);
+            --pink-gradient: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            --blue-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --text-primary: #2c3e50;
+            --text-light: #7f8c8d;
+            --white: #ffffff;
+            --shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.7;
+            color: var(--text-primary);
+            background: var(--primary-gradient);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            background: var(--violet-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .nav-links a:before {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--violet-gradient);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover:before {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 100px;
+            padding: 6rem 0;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .hero h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            font-weight: 300;
+            margin-bottom: 3rem;
+            opacity: 0.95;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.2s both;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.4s both;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: var(--violet-gradient);
+            color: var(--white);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* Main Content */
+        .main-content {
+            background: var(--white);
+            border-radius: 30px 30px 0 0;
+            margin-top: 2rem;
+            padding: 4rem 0;
+            box-shadow: var(--shadow);
+        }
+
+        /* Dashboard Section */
+        .dashboard {
+            padding: 3rem 0;
+        }
+
+        .section-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: var(--violet-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Alert Cards */
+        .alert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .alert-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .alert-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+        }
+
+        .alert-critical:before { background: linear-gradient(90deg, #ff4757, #c44569); }
+        .alert-high:before { background: linear-gradient(90deg, #ffa726, #fb8c00); }
+        .alert-medium:before { background: linear-gradient(90deg, #26de81, #20bf6b); }
+        .alert-info:before { background: linear-gradient(90deg, #3742fa, #2f3542); }
+
+        .alert-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .alert-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .alert-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .alert-description {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .alert-time {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .feature-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-gradient);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .feature-card:hover:before {
+            opacity: 0.05;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .feature-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .feature-description {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Control Panel */
+        .control-panel {
+            background: linear-gradient(135deg, #2d1b69 0%, #11998e 100%);
+            padding: 3rem;
+            border-radius: 25px;
+            margin: 3rem 0;
+            color: var(--white);
+        }
+
+        .control-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .control-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .control-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            color: var(--white);
+            padding: 1.5rem;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            text-align: center;
+        }
+
+        .control-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-3px);
+        }
+
+        /* Statistics Dashboard */
+        .stats-dashboard {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 3rem;
+            border-radius: 25px;
+            margin: 3rem 0;
+            color: var(--white);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Emergency Form */
+        .emergency-form {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 25px;
+            box-shadow: var(--shadow);
+            margin: 3rem 0;
+        }
+
+        .form-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--text-primary);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e1e8ed;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .modal-content {
+            background: var(--white);
+            margin: 5% auto;
+            padding: 3rem;
+            border-radius: 25px;
+            width: 90%;
+            max-width: 600px;
+            position: relative;
+            box-shadow: var(--shadow-hover);
+            animation: modalSlideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .modal-close {
+            position: absolute;
+            right: 1.5rem;
+            top: 1.5rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-light);
+            transition: color 0.3s ease;
+        }
+
+        .modal-close:hover {
+            color: var(--text-primary);
+        }
+
+        .modal-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #2d1b69 0%, #11998e 100%);
+            color: var(--white);
+            text-align: center;
+            padding: 3rem 0;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .footer-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero h1 { font-size: 2.5rem; }
+            .hero-subtitle { font-size: 1.1rem; }
+            .cta-buttons { flex-direction: column; align-items: center; }
+            .container { padding: 0 1rem; }
+            .features-grid { grid-template-columns: 1fr; }
+            .form-grid { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo">🛡️ CitySafe Pro</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#dashboard">Dashboard</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#alerts">Alerts</a></li>
+                <li><a href="#report">Report</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>Advanced Citizen Safety System</h1>
+            <p class="hero-subtitle">Empowering smart cities with real-time safety monitoring, predictive alerts, and community-driven incident management for a safer tomorrow.</p>
+            <div class="cta-buttons">
+                <a href="#dashboard" class="btn btn-primary">
+                    🚀 Access Dashboard
+                </a>
+                <a href="#features" class="btn btn-secondary">
+                    📋 View Features
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="dashboard">
+            <div class="container">
+                <h2 class="section-title">Real-Time Safety Dashboard</h2>
+                
+                <!-- Alert Cards -->
+                <div class="alert-grid">
+                    <div class="alert-card alert-critical" onclick="showAlert('🚨 Critical Alert', 'Severe weather warning detected in downtown sector. Emergency shelters activated. Seek immediate shelter.')">
+                        <div class="alert-icon">⚠️</div>
+                        <h3 class="alert-title">CRITICAL EMERGENCY</h3>
+                        <p class="alert-description">Severe weather alert - Downtown area</p>
+                        <span class="alert-time">Active Now • High Priority</span>
+                    </div>
+
+                    <div class="alert-card alert-high" onclick="showAlert('🔥 Fire Emergency', 'Structure fire reported at 123 Main Street. Fire department en route. Avoid area.')">
+                        <div class="alert-icon">🔥</div>
+                        <h3 class="alert-title">FIRE EMERGENCY</h3>
+                        <p class="alert-description">Structure fire - Main Street vicinity</p>
+                        <span class="alert-time">3 min ago • Emergency Response</span>
+                    </div>
+
+                    <div class="alert-card alert-medium" onclick="showAlert('🚧 Traffic Alert', 'Major traffic congestion on Highway 101 due to accident. Consider alternate routes.')">
+                        <div class="alert-icon">🚧</div>
+                        <h3 class="alert-title">TRAFFIC DISRUPTION</h3>
+                        <p class="alert-description">Highway 101 - Heavy congestion</p>
+                        <span class="alert-time">15 min ago • Traffic Management</span>
+                    </div>
+
+                    <div class="alert-card alert-info" onclick="showAlert('🌿 Environmental Update', 'Air quality index: Good (42 AQI). Weather: Clear skies, 72°F.')">
+                        <div class="alert-icon">🌿</div>
+                        <h3 class="alert-title">ENVIRONMENTAL STATUS</h3>
+                        <p class="alert-description">Air quality: Good • Weather: Clear</p>
+                        <span class="alert-time">1 hour ago • Environmental Monitor</span>
+                    </div>
+                </div>
+
+                <!-- Control Panel -->
+                <div class="control-panel">
+                    <h3 class="control-title">Emergency Control Center</h3>
+                    <div class="control-buttons">
+                        <button class="control-btn" onclick="reportEmergency()">
+                            🚨 Report Emergency
+                        </button>
+                        <button class="control-btn" onclick="viewSafetyMap()">
+                            🗺️ Safety Map
+                        </button>
+                        <button class="control-btn" onclick="checkEvacuationRoutes()">
+                            🛤️ Evacuation Routes
+                        </button>
+                        <button class="control-btn" onclick="contactServices()">
+                            📞 Emergency Services
+                        </button>
+                        <button class="control-btn" onclick="weatherAlerts()">
+                            🌤️ Weather Alerts
+                        </button>
+                        <button class="control-btn" onclick="safetyTips()">
+                            💡 Safety Tips
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Statistics Dashboard -->
+                <div class="stats-dashboard">
+                    <h3 class="control-title">Live City Safety Statistics</h3>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-number" id="activeIncidents">7</span>
+                            <span class="stat-label">Active Incidents</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="emergencyUnits">34</span>
+                            <span class="stat-label">Emergency Units Online</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="responseTime">3.2</span>
+                            <span class="stat-label">Avg Response Time (min)</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="safetyScore">92%</span>
+                            <span class="stat-label">City Safety Score</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="citizensProtected">247K</span>
+                            <span class="stat-label">Citizens Protected</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="alertsSent">1.2K</span>
+                            <span class="stat-label">Alerts Sent Today</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="dashboard">
+            <div class="container">
+                <h2 class="section-title">Essential Safety Features</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <span class="feature-icon">🚨</span>
+                        <h3 class="feature-title">Real-Time Alert System</h3>
+                        <p class="feature-description">Instant multi-channel notifications for emergencies, severe weather, and safety threats with geo-targeted precision.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <span class="feature-icon">🤖</span>
+                        <h3 class="feature-title">AI-Powered Risk Assessment</h3>
+                        <p class="feature-description">Machine learning algorithms analyze patterns to predict and prevent incidents before they escalate.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <span class="feature-icon">📍</span>
+                        <h3 class="feature-title">Geo-Location Services</h3>
+                        <p class="feature-description">GPS-enabled location tracking for precise emergency response and area-specific safety alerts.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <span class="feature-icon">👥</span>
+                        <h3 class="feature-title">Community Reporting Network</h3>
+                        <p class="feature-description">Citizen-powered incident reporting with photo/video evidence and real-time verification system.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <span class="feature-icon">🏥</span>
+                        <h3 class="feature-title">Emergency Services Integration</h3>
+                        <p class="feature-description">Direct connection to police, fire, medical, and disaster response with automated dispatch coordination.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <span class="feature-icon">📱</span>
+                        <h3 class="feature-title">Multi-Platform Access</h3>
+                        <p class="feature-description">Available on web, mobile apps, SMS, and social media for 100% accessibility across all demographics.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <span class="feature-icon">🌡️</span>
+                        <h3 class="feature-title">Environmental Monitoring</h3>
+                        <p class="feature-description">Real-time air quality, weather conditions, radiation levels, and environmental hazard tracking.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <span class="feature-icon">🛡️</span>
+                        <h3 class="feature-title">Cybersecurity Protection</h3>
+                        <p class="feature-description">End-to-end encryption, secure data transmission, and privacy-first approach to citizen safety.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Emergency Reporting Form -->
+        <section id="report" class="emergency-form">
+            <div class="container">
+                <h3 class="form-title">Emergency & Incident Reporting</h3>
+                <form id="emergencyForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label" for="incidentType">Incident Type</label>
+                            <select class="form-select" id="incidentType" required>
+                                <option value="">Select incident type...</option>
+                                <option value="medical">🏥 Medical Emergency</option>
+                                <option value="fire">🔥 Fire Emergency</option>
+                                <option value="crime">👮 Crime/Security Incident</option>
+                                <option value="accident">🚗 Traffic Accident</option>
+                                <option value="weather">🌪️ Severe Weather</option>
+                                <option value="infrastructure">🏗️ Infrastructure Failure</option>
+                                <option value="environmental">🌿 Environmental Hazard</option>
+                                <option value="cyber">💻 Cybersecurity Threat</option>
+                                <option value="other">❓ Other Emergency</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="severity">Severity Level</label>
+                            <select class="form-select" id="severity" required>
+                                <option value="">Select severity...</option>
+                                <option value="critical">🔴 Critical - Life Threatening</option>
+                                <option value="high">🟠 High - Immediate Action Required</option>
+                                <option value="medium">🟡 Medium - Urgent Response</option>
+                                <option value="low">🔵 Low - Standard Response</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="location">Location</label>
+                            <input class="form-input" type="text" id="location" placeholder="Enter specific address or landmark..." required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="contact">Contact Information</label>
+                            <input class="form-input" type="tel" id="contact" placeholder="Phone number (optional)">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="description">Detailed Description</label>
+                        <textarea class="form-textarea" id="description" rows="4" placeholder="Provide comprehensive details about the situation, number of people affected, current conditions, and any immediate dangers..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; font-size: 1.1rem; padding: 1.2rem;">
+                        🚨 Submit Emergency Report
+                    </button>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <h3 class="footer-title">CitySafe Pro - Advanced Safety Network</h3>
+                <p>Protecting communities through intelligent technology and real-time response systems.</p>
+                <p style="margin-top: 1rem; font-weight: 500;">
+                    🚨 Emergency Hotline: 911 | 📞 Non-Emergency: (555) 123-SAFE | 💬 24/7 Support: help@citysafe.pro
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div id="alertModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h3 class="modal-title" id="modalTitle">Alert Title</h3>
+            <p id="modalContent">Alert content goes here.</p>
+            <button class="btn btn-primary" onclick="closeModal()" style="margin-top: 1.5rem;">
+                ✅ Acknowledged
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Enhanced Alert System
+        function showAlert(title, content) {
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalContent').textContent = content;
+            document.getElementById('alertModal').style.display = 'block';
+            
+            // Add to activity log
+            logActivity(title, content);
+        }
+
+        function closeModal() {
+            document.getElementById('alertModal').style.display = 'none';
+        }
+
+        // Modal event handlers
+        window.onclick = function(event) {
+            const modal = document.getElementById('alertModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        document.querySelector('.modal-close').onclick = closeModal;
+
+        // Enhanced Control Panel Functions
+        function reportEmergency() {
+            document.getElementById('incidentType').focus();
+            document.getElementById('severity').value = 'critical';
+            document.getElementById('report').scrollIntoView({ behavior: 'smooth' });
+            showAlert('🚨 Emergency Reporting', 'Please fill out the emergency form below. For immediate life-threatening emergencies, call 911 directly.');
+        }
+
+        function viewSafetyMap() {
+            showAlert('🗺️ Interactive Safety Map', 'Real-time safety map displaying: Active incidents, Emergency services locations, Safe routes, Shelter locations, Traffic conditions, Environmental hazards, and Community alerts.');
+        }
+
+        function checkEvacuationRoutes() {
+            showAlert('🛤️ Evacuation Routes', 'Current evacuation routes are clear. Recommended routes: Route A (Main St → Highway 101), Route B (Oak Ave → Interstate 85), Route C (Pine St → Route 9). Emergency shelters: Central High School, Community Center, Municipal Building.');
+        }
+
+        function contactServices() {
+            showAlert('📞 Emergency Services Directory', 'Police: 911 | Fire Department: 911 | Medical Emergency: 911 | Poison Control: 1-800-222-1222 | Disaster Services: (555) 123-HELP | Mental Health Crisis: (555) 123-MIND | Non-Emergency Police: (555) 123-COPS');
+        }
+
+        function weatherAlerts() {
+            showAlert('🌤️ Weather Alert System', 'Current conditions: Clear, 72°F | Today: Sunny, High 78°F, Low 58°F | Tomorrow: Partly cloudy, 20% chance rain | Weekly outlook: Stable conditions, no severe weather expected | Air Quality: Good (AQI 42)');
+        }
+
+        function safetyTips() {
+            showAlert('💡 Daily Safety Tips', 'Today\'s safety tips: 1) Keep emergency contact list updated, 2) Check smoke detector batteries monthly, 3) Plan multiple evacuation routes, 4) Keep emergency kit stocked, 5) Stay informed about local alerts, 6) Report suspicious activities promptly.');
+        }
+
+        // Enhanced Form Submission
+        document.getElementById('emergencyForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                type: document.getElementById('incidentType').value,
+                severity: document.getElementById('severity').value,
+                location: document.getElementById('location').value,
+                contact: document.getElementById('contact').value,
+                description: document.getElementById('description').value,
+                timestamp: new Date().toISOString(),
+                reportId: 'CS' + Math.random().toString(36).substr(2, 9).toUpperCase()
+            };
+            
+            // Simulate form processing
+            const submitButton = e.target.querySelector('button[type="submit"]');
+            submitButton.textContent = '⏳ Processing...';
+            submitButton.disabled = true;
+            
+            setTimeout(() => {
+                showAlert('✅ Report Submitted Successfully', 
+                    `Your emergency report has been submitted and is being processed by our emergency response team. 
+                    
+                    Report ID: ${formData.reportId}
+                    Incident Type: ${formData.type.charAt(0).toUpperCase() + formData.type.slice(1)}
+                    Severity: ${formData.severity.charAt(0).toUpperCase() + formData.severity.slice(1)}
+                    
+                    Emergency services have been automatically notified based on the severity level. You will receive updates via SMS/email.
+                    
+                    For immediate life-threatening emergencies, please call 911 directly.`
+                );
+                
+                // Reset form
+                document.getElementById('emergencyForm').reset();
+                submitButton.textContent = '🚨 Submit Emergency Report';
+                submitButton.disabled = false;
+                
+                // Update statistics
+                updateStatistics();
+            }, 2000);
+        });
+
+        // Real-time Statistics Updates
+        function updateStatistics() {
+            const stats = {
+                activeIncidents: () => Math.floor(Math.random() * 15) + 3,
+                emergencyUnits: () => Math.floor(Math.random() * 25) + 20,
+                responseTime: () => (Math.random() * 2 + 2.5).toFixed(1),
+                safetyScore: () => Math.floor(Math.random() * 10 + 88) + '%',
+                citizensProtected: () => (Math.floor(Math.random() * 50) + 245) + 'K',
+                alertsSent: () => (Math.random() * 0.8 + 1).toFixed(1) + 'K'
+            };
+            
+            Object.keys(stats).forEach(key => {
+                const element = document.getElementById(key);
+                if (element) {
+                    element.textContent = stats[key]();
+                    element.parentElement.classList.add('pulse-animation');
+                    setTimeout(() => {
+                        element.parentElement.classList.remove('pulse-animation');
+                    }, 2000);
+                }
+            });
+        }
+
+        // Activity Logging
+        const activityLog = [];
+        function logActivity(title, content) {
+            activityLog.push({
+                timestamp: new Date().toISOString(),
+                title: title,
+                content: content
+            });
+            
+            // Keep only last 50 activities
+            if (activityLog.length > 50) {
+                activityLog.shift();
+            }
+        }
+
+        // Simulated Real-time Alert System
+        const simulatedAlerts = [
+            { title: '🌧️ Weather Update', message: 'Light rain expected in 30 minutes. Drive carefully.', type: 'info' },
+            { title: '🚧 Traffic Advisory', message: 'Construction on Elm Street causing delays. Use alternate route.', type: 'medium' },
+            { title: '🏥 Health Alert', message: 'Flu vaccination clinic open at Community Center today.', type: 'info' },
+            { title: '🔥 Fire Drill', message: 'Scheduled fire drill at City Hall at 2 PM today.', type: 'low' },
+            { title: '🌿 Air Quality', message: 'Air quality remains good. Safe for outdoor activities.', type: 'info' },
+            { title: '👮 Security Update', message: 'Increased police presence downtown for public event.', type: 'medium' }
+        ];
+
+        // Simulate receiving alerts every 45 seconds
+        setInterval(() => {
+            if (Math.random() < 0.4) { // 40% chance
+                const randomAlert = simulatedAlerts[Math.floor(Math.random() * simulatedAlerts.length)];
+                
+                // Create notification effect
+                const notification = document.createElement('div');
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 100px;
+                    right: 20px;
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    color: white;
+                    padding: 1rem 1.5rem;
+                    border-radius: 10px;
+                    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                    z-index: 1500;
+                    font-weight: 500;
+                    max-width: 300px;
+                    animation: slideInRight 0.5s ease;
+                    cursor: pointer;
+                `;
+                
+                notification.innerHTML = `
+                    <div style="font-weight: 600; margin-bottom: 0.5rem;">${randomAlert.title}</div>
+                    <div style="font-size: 0.9rem; opacity: 0.9;">${randomAlert.message}</div>
+                `;
+                
+                notification.onclick = () => {
+                    showAlert(randomAlert.title, randomAlert.message);
+                    document.body.removeChild(notification);
+                };
+                
+                document.body.appendChild(notification);
+                
+                // Auto-remove after 5 seconds
+                setTimeout(() => {
+                    if (document.body.contains(notification)) {
+                        notification.style.animation = 'slideOutRight 0.5s ease';
+                        setTimeout(() => {
+                            if (document.body.contains(notification)) {
+                                document.body.removeChild(notification);
+                            }
+                        }, 500);
+                    }
+                }, 5000);
+            }
+        }, 45000);
+
+        // Update statistics every 10 seconds
+        setInterval(updateStatistics, 10000);
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add CSS for notification animations
+        const notificationStyles = document.createElement('style');
+        notificationStyles.textContent = `
+            @keyframes slideInRight {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+            
+            @keyframes slideOutRight {
+                from {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+                to {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(notificationStyles);
+
+        // Initialize system
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('CitySafe Pro Emergency Alert System Initialized');
+            logActivity('System Startup', 'CitySafe Pro system successfully initialized and ready for operation.');
+        });
+    </script>
+</body>
+</html>
